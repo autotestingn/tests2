@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pages.OtusPage;
 
 public class UITest extends BaseTest {
-    @Test
+    @Test(description = "Проверка1")
     public void chooseCourseByName() {
         OtusPage otusPage = new OtusPage(driver);
         otusPage.open();
@@ -13,7 +13,7 @@ public class UITest extends BaseTest {
         courseBlockComponent.clickCourseWithName("Linux");
     }
 
-    @Test
+    @Test(description = "Проверка2")
     public void chooseCourseByMaxDate() {
         OtusPage otusPage = new OtusPage(driver);
         otusPage.open();
@@ -21,7 +21,7 @@ public class UITest extends BaseTest {
         courseBlockComponent.clickCourseWithMaxStartDate();
     }
 
-    @Test
+    @Test(description = "Проверка3")
     public void chooseCourseByMinDate() {
         OtusPage otusPage = new OtusPage(driver);
         otusPage.open();

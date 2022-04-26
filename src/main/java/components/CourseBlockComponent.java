@@ -1,10 +1,12 @@
 package components;
 
 import entities.CourseBlockEntity;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.testng.annotations.Test;
 import utils.Finder;
 import utils.IFindDate;
 
@@ -109,6 +111,7 @@ public class CourseBlockComponent extends BaseComponent<CourseBlockComponent>{
         }
     }
 
+
     private WebElement searchCourseByMaxDate() {
         List<WebElement> w = searchCoursesWithDate();
         parseСourseBlocks(w);
@@ -133,12 +136,14 @@ public class CourseBlockComponent extends BaseComponent<CourseBlockComponent>{
         }
     }
 
+    @Step("Нажимаем на курс с названием {courseName}")
     public void clickCourseWithName(String courseName) {
         if (courseName != null) {
             customAction.click(driver, searchCourseByName(courseName)).build().perform();
         }
     }
 
+    @Step("Нажимаем на курс с самой ранней датой начала")
     public void clickCourseWithMaxStartDate() {
         WebElement courseWithMaxDate = searchCourseByMaxDate();
         customAction.setAttributeForOpenLinkInNewTab(driver, getCourseBlockLink(courseWithMaxDate)).click(driver, courseWithMaxDate).build().perform();
@@ -146,6 +151,7 @@ public class CourseBlockComponent extends BaseComponent<CourseBlockComponent>{
         driver.switchTo().window(oldTab);
     }
 
+    @Step("Нажимаем на курс с самой поздней датой начала")
     public void clickCourseWithMinStartDate() {
         action.moveToElement(searchCourseByMinDate()).keyDown(Keys.CONTROL).sendKeys(Keys.TAB).click().build().perform();
     }
